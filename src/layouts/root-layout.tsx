@@ -8,8 +8,10 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import type { ADMIN } from "@/lib/types";
 
-export default function RootLayout() {
+
+export default function RootLayout({ firstName, lastName, studentId }: ADMIN) {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -25,7 +27,9 @@ export default function RootLayout() {
         <main className="flex-1 p-4">
           <Outlet />
         </main>
-        <footer className="border-t p-4 text-center text-xs text-muted-foreground"></footer>
+        <footer className="border-t p-4 text-center text-xs text-muted-foreground">
+          จัดทำโดย ชื่อ {firstName} {lastName} — รหัสนักศึกษา {studentId}
+        </footer>
       </SidebarInset>
     </SidebarProvider>
   );
