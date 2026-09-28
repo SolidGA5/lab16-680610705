@@ -147,7 +147,7 @@ function AddDialog() {
           ></MultiSelet>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" disabled={CourseCode === "" || CourseTitle === ""} onClick={() => handleAdd(CourseCode.toUpperCase(),
+          <Button type="submit" disabled={CourseCode === "" || CourseTitle === "" || isDuplicate} onClick={() => handleAdd(CourseCode.toUpperCase(),
             CourseTitle, CourseInstructur == null ? [] : CourseInstructur)}>บันทึก</Button>
         </DialogFooter>
       </DialogContent>

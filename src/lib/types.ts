@@ -16,13 +16,6 @@ interface Course {
 }
 export type { Course };
 
-interface Enrollment {
-  studentId: string;
-  courseId: string;
-  enrolledAt?: string;
-}
-export type { Enrollment };
-
 interface ADMIN {
   firstName: string;
   lastName: string;
