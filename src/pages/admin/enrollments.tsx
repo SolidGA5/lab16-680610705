@@ -33,7 +33,6 @@ import {
   ComboboxChips,
   ComboboxChipsInput,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxItem,
   ComboboxList,
   ComboboxValue,
@@ -178,6 +177,18 @@ export default function AdminEnrollmentsPage() {
     }
   })
 
+  function filter(data: TableDisplay[]) {
+    let filter: TableDisplay[]
+    if (mode == "course") {
+      if (filterCourse === "all") { return data; }
+      filter = data.filter(d => d.CourseCode == filterCourse)
+    } else {
+      if (filterStudent === "all") { return data; }
+      filter = data.filter(d => d.Who.includes(filterStudent))
+    }
+    return filter;
+  }
+
 
   const nameOf = (studentId: string) => {
     const s = students.find((x) => x.studentId === studentId);
@@ -277,7 +288,7 @@ export default function AdminEnrollmentsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {TableD.length === 0 && (
+            {filter(TableD).length === 0 && (
               <TableRow>
                 <TableCell
                   colSpan={4}
@@ -287,7 +298,7 @@ export default function AdminEnrollmentsPage() {
                 </TableCell>
               </TableRow>
             )}
-            {TableD.map((e) => (
+            {filter(TableD).map((e) => (
               <TableRow key={e.NameCourse}>
                 <TableCell>{e.CourseCode}</TableCell>
                 <TableCell>{titleOf(e.CourseCode)}</TableCell>

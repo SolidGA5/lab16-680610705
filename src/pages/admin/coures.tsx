@@ -40,6 +40,8 @@ import { Input } from "@/components/ui/input"
 import { CirclePlus, Trash2, X } from "lucide-react"
 import React, { useState } from "react"
 import { Label } from "@/components/ui/label"
+
+
 function DelAlert({ courseId }: { courseId: string }) {
   const { removeCourse } = useEnrollmentStore();
   const [openAlert, setOpenAlert] = useState<boolean>(false);
@@ -52,7 +54,7 @@ function DelAlert({ courseId }: { courseId: string }) {
       <AlertDialogTrigger
         render={<Button variant="ghost"
           size="icon"
-          className="h-4 w-4 rounded-full text-red-500 p-0"
+          className="h-4 w-4 rounded-full text-red-400 p-0"
         ><Trash2 className="h-0.5 w-0.5" /></Button>}
       />
       <AlertDialogContent>
@@ -141,7 +143,7 @@ function AddDialog() {
             />
           </div>
           <Label htmlFor="courseTitle">ผู้สอน</Label>
-          <MultiSelet choice={createInstucutre()} placeHolder="เลือก" onChange={v => setCourseInstructur(v)}
+          <MultiSelet choice={createInstucutre()} placeHolder="เลือกหรือพิมพ์ชื่อผู้สอน (ได้หลายคน)" onChange={v => setCourseInstructur(v)}
           ></MultiSelet>
         </DialogHeader>
         <DialogFooter>
@@ -254,21 +256,23 @@ export function AdminCouresPage() {
             courses.map(c => <TableRow>
               <TableCell>{c.courseCode}</TableCell>
               <TableCell>{titleOf(c.courseCode)}</TableCell>
-              <TableCell aria-placeholder="ยังไม่มีผู้สอน" className="space-x-1">{
-                c.instructors?.map(i =>
-                  <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                    {i}
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-4 w-4 rounded-full text-blue-300 hover:text-red-500 p-0"
-                      onClick={() => removeInstucutre(i, c.courseCode)}
-                    >
-                      <X className="h-0.5 w-0.5" />
-                    </Button>
-                  </Badge>
-                )
-              }
+              <TableCell className="space-x-1">
+                {
+                  c.instructors == null || c.instructors.length == 0 ? <div className="opacity-50">	ยังไม่มีผู้สอน</div> :
+                    c.instructors?.map(i =>
+                      <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                        {i}
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-4 w-4 rounded-full text-blue-300 hover:text-red-500 p-0"
+                          onClick={() => removeInstucutre(i, c.courseCode)}
+                        >
+                          <X className="h-0.5 w-0.5" />
+                        </Button>
+                      </Badge>
+                    )
+                }
               </TableCell>
               <TableCell>
                 <DelAlert courseId={c.courseCode}></DelAlert>
