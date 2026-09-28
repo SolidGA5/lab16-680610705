@@ -303,19 +303,21 @@ export default function AdminEnrollmentsPage() {
                 <TableCell>{e.CourseCode}</TableCell>
                 <TableCell>{titleOf(e.CourseCode)}</TableCell>
                 <TableCell>{e.AmountEnroll}</TableCell>
-                <TableCell className="space-x-1">{e.Who.map(c =>
-                  <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                    {nameOf(c)}
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-4 w-4 rounded-full text-blue-300 hover:text-red-500 p-0"
-                      onClick={() => handleDeleteStudent(c, e.CourseCode)}
-                    >
-                      <X className="h-0.5 w-0.5" />
-                    </Button>
-                  </Badge>
-                )
+                <TableCell className="space-x-1">{
+                  e.Who.length === 0 ? <div className="opacity-50">ยังไม่มีนักศึกษาลงทะเบียน</div> :
+                    e.Who.map(c =>
+                      <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                        {nameOf(c)}
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-4 w-4 rounded-full text-blue-300 hover:text-red-500 p-0"
+                          onClick={() => handleDeleteStudent(c, e.CourseCode)}
+                        >
+                          <X className="h-0.5 w-0.5" />
+                        </Button>
+                      </Badge>
+                    )
                 }
                 </TableCell>
               </TableRow>
