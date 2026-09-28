@@ -159,7 +159,7 @@ function MultiSelet({ choice, placeHolder, onChange }:
   const [choices, setChoices] = useState(choice)
 
   function choiceFillter(choicee: string[]) {
-    return choicee.filter(c => c.toLowerCase().startsWith(newInsturctre))
+    return choicee.filter(c => c.toLowerCase().startsWith(newInsturctre.toLowerCase()))
   }
 
   function isNewInsturctre(name: string) {
@@ -181,6 +181,7 @@ function MultiSelet({ choice, placeHolder, onChange }:
   function handleChange(names: string[]) {
     setBoxValue(names)
     onChange(names)
+    setNewInsturcture("")
   }
 
   return <Combobox
