@@ -4,11 +4,8 @@ import { Button } from "@/components/ui/button"
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table"
 import { useEnrollmentStore } from "@/lib/enrollment-store"
@@ -19,7 +16,6 @@ import {
   ComboboxChipsInput,
   ComboboxContent,
   ComboboxEmpty,
-  ComboboxInput,
   ComboboxItem,
   ComboboxList,
   ComboboxValue,
@@ -27,7 +23,6 @@ import {
 } from "@/components/ui/combobox"
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
