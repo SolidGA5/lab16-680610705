@@ -27,7 +27,7 @@ export default function RootLayout({ firstName, lastName, studentId }: ADMIN) {
           <Outlet />
         </main>
         <footer className="border-t p-4 text-center text-xs text-muted-foreground">
-          จัดทำโดย {firstName} {lastName} — รหัสนักศึกษา {studentId}
+          จัดทำโดย {firstName} {lastName}  — {studentId}
         </footer>
       </SidebarInset>
     </SidebarProvider>
