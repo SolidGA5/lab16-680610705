@@ -35,7 +35,6 @@ import { Input } from "@/components/ui/input"
 import { CirclePlus, Trash2, X } from "lucide-react"
 import React, { useState } from "react"
 import { Label } from "@/components/ui/label"
-import { students } from "@/lib/mock-data"
 
 
 function DelAlert({ courseId }: { courseId: string }) {
