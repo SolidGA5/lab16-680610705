@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/sidebar";
 import type { ADMIN } from "@/lib/types";
 
-
 export default function RootLayout({ firstName, lastName, studentId }: ADMIN) {
   return (
     <SidebarProvider>
@@ -28,7 +27,7 @@ export default function RootLayout({ firstName, lastName, studentId }: ADMIN) {
           <Outlet />
         </main>
         <footer className="border-t p-4 text-center text-xs text-muted-foreground">
-          จัดทำโดย ชื่อ {firstName} {lastName} — รหัสนักศึกษา {studentId}
+          จัดทำโดย {firstName} {lastName} — รหัสนักศึกษา {studentId}
         </footer>
       </SidebarInset>
     </SidebarProvider>
