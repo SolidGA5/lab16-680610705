@@ -35,6 +35,7 @@ import { Input } from "@/components/ui/input"
 import { CirclePlus, Trash2, X } from "lucide-react"
 import React, { useState } from "react"
 import { Label } from "@/components/ui/label"
+import { students } from "@/lib/mock-data"
 
 
 function DelAlert({ courseId }: { courseId: string }) {
@@ -157,17 +158,26 @@ function MultiSelet({ choice, placeHolder, onChange }:
   const [newInsturctre, setNewInsturcture] = useState("")
   const [boxValue, setBoxValue] = useState<string[]>([])
   const [choices, setChoices] = useState(choice)
+
+  function choiceFillter(choicee: string[]) {
+    return choicee.filter(c => c.toLowerCase().startsWith(newInsturctre))
+  }
+
   function isNewInsturctre(name: string) {
+    const lowerName: string = name.toLowerCase()
     if (name === "") {
       return true;
     }
-    return choice.includes(name);
+    return choiceFillter(choices).map(c => c.toLowerCase()).includes(lowerName);
   }
   function addNewInsturcture(name: string, oldData: string[]) {
     setBoxValue(p => [...p, name])
     setChoices(p => [...p, name])
     handleChange([...oldData, name])
+    setNewInsturcture("");
   }
+
+
 
   function handleChange(names: string[]) {
     setBoxValue(names)
@@ -190,14 +200,16 @@ function MultiSelet({ choice, placeHolder, onChange }:
           </React.Fragment>
         )}
       </ComboboxValue>
-      <ComboboxChipsInput placeholder={boxValue.length == 0 ? placeHolder : ""} onChange={(e) => setNewInsturcture(e.target.value)}></ComboboxChipsInput>
+      <ComboboxChipsInput placeholder={boxValue.length == 0 ? placeHolder : ""}
+        value={newInsturctre}
+        onChange={(e) => setNewInsturcture(e.target.value)}></ComboboxChipsInput>
     </ComboboxChips>
     <ComboboxContent ref={anchor}>
       {
         choices.length == 0 && <ComboboxEmpty>พิมพ์ชื่อเพื่อเพิ่มผู้สอนใหม่</ComboboxEmpty>
       }
       <ComboboxList>
-        {choices.map((item) => (
+        {choiceFillter(choices).map((item) => (
           <ComboboxItem key={item} value={item} onClick={() => setBoxValue(p => [...p, item])}>
             {item}
           </ComboboxItem>
