@@ -15,7 +15,7 @@ export const students: Student[] = [
     lastName: "Murphy",
     program: "CPE",
     status: "Active",
-    enrolledCourses: []
+    enrolledCourses: ["CPE301", "CPE302"]
   },
   {
     studentId: "650610003",
@@ -23,7 +23,7 @@ export const students: Student[] = [
     lastName: "Blunt",
     program: "ISNE",
     status: "Active",
-    enrolledCourses: []
+    enrolledCourses: ["ISNE101", "CPE302"]
   },
 ];
 
