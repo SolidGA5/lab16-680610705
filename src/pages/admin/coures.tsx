@@ -159,7 +159,7 @@ function MultiSelet({ choice, placeHolder, onChange }:
   const [choices, setChoices] = useState(choice)
 
   function choiceFillter(choicee: string[]) {
-    return choicee.filter(c => c.toLowerCase().startsWith(newInsturctre.toLowerCase()))
+    return choicee.filter(c => c.toLowerCase().includes(newInsturctre.toLowerCase()))
   }
 
   function isNewInsturctre(name: string) {
